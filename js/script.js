@@ -122,10 +122,6 @@ function getRandomBackground() {
     return color;
 }
 
-function getNewQuoteTimer() {
-
-}
-
 /* The on click event listener that runs printQuote */
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
 
