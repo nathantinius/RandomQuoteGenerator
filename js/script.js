@@ -97,30 +97,32 @@ function GetRandomNumber() {
  * Builds the quote html and assigns it
  * to the designated div in index.html
 ***/
-setInterval(
-    function printQuote() {
-        let newQuote = GetRandomQuote();
-        let html = `<p class="quote">${newQuote.quote}</p>
-        <p class="source">${newQuote.source},`;
-        if (newQuote.citation && newQuote.year) {
-            html += `<span id="citation"> ${newQuote.citation},</span><span id="year"> ${newQuote.year},</span>`;
-        } else if (newQuote.citation) {
-            html += `<span id="citation"> ${newQuote.citation},</span>`;
-        } else if (newQuote.year) {
-            html += `<span id="year"> ${newQuote.year},</span>`;
-        }
-        html += `<span> ${newQuote.tag}</span></p>`;
 
-        document.getElementById('quote-box').innerHTML = html;
-        document.body.style.backgroundColor = getRandomBackground();
+function printQuote() {
+    /* Calls Random Quote Function */
+    let newQuote = GetRandomQuote();
+    let html = `<p class="quote">${newQuote.quote}</p>
+    <p class="source">${newQuote.source},`;
+    if (newQuote.citation && newQuote.year) {
+        html += `<span id="citation"> ${newQuote.citation},</span><span id="year"> ${newQuote.year},</span>`;
+    } else if (newQuote.citation) {
+        html += `<span id="citation"> ${newQuote.citation},</span>`;
+    } else if (newQuote.year) {
+        html += `<span id="year"> ${newQuote.year},</span>`;
+    }
+    html += `<span> ${newQuote.tag}</span></p>`;
 
-    }, 10000
-);
+    document.getElementById('quote-box').innerHTML = html;
+    document.body.style.backgroundColor = GetRandomBackground();
+}
 
-function getRandomBackground() {
+function GetRandomBackground() {
     color = 'rgb(' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ')';
     return color;
 }
+
+/* Set Interval */
+setInterval(printQuote, 7000);
 
 /* The on click event listener that runs printQuote */
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
